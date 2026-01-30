@@ -189,6 +189,15 @@ README.md
 All UI screenshots are organized to clearly represent the actual user navigation flow in the application.  
 Screenshots are named using SEO-friendly conventions to improve GitHub readability and recruiter visibility.
 
+## 📸 UI Screenshots – FoodieHub
+
+This folder contains UI screenshots of the FoodieHub application.
+
+The screenshots are organized according to the actual user navigation flow:
+Login → Register → Home → Restaurant → Menu → Cart → Order Confirmation → Order Success.
+
+All images reflect real JSP pages from the application and are intended for GitHub reviewers and interview discussions.
+
 assets/screenshots
 
 assets/screenshots
