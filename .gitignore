@@ -1,0 +1,29 @@
+# Eclipse
+.metadata/
+.project
+.classpath
+.settings/
+
+# Build output
+bin/
+build/
+target/
+
+# Server files
+Servers/
+tomcat/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Sensitive
+DBConnection.java
