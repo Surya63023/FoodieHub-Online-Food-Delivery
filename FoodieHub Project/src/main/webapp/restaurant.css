@@ -1,0 +1,336 @@
+/* =====================================================
+   THEME VARIABLES
+   -----------------------------------------------------
+   Centralized design tokens used across the page.
+   Controls accent color, text hierarchy, card background,
+   and glassmorphism border styling.
+===================================================== */
+:root {
+  --accent: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --card-bg: rgba(18, 18, 18, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+/* =====================================================
+   GLOBAL RESET
+   -----------------------------------------------------
+   Removes default browser spacing and normalizes box model.
+   Applies a global font and smooth scrolling behavior.
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   BODY BACKGROUND & BASE LAYOUT
+   -----------------------------------------------------
+   Full-height layout with dark overlay on a fixed
+   background image for contrast and readability.
+===================================================== */
+body {
+  min-height: 100vh;
+  color: var(--text-main);
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+    url("https://i.pinimg.com/736x/b8/8b/0e/b88b0e7ebda59d691cec727a636d3102.jpg")
+      center / cover fixed;
+}
+
+/* =====================================================
+   HEADER
+   -----------------------------------------------------
+   Sticky header with glass blur effect.
+   Uses relative positioning to anchor absolute auth nav.
+===================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* Enables correct positioning for auth-nav */
+  position: relative;
+
+  padding: 22px 8%;
+  backdrop-filter: blur(14px);
+  background: rgba(10, 10, 10, 0.65);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Application / page title inside header */
+header h1 {
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* =====================================================
+   AUTH NAV (LOGIN / LOGOUT)
+   -----------------------------------------------------
+   Positioned to the right inside the header.
+   Vertically centered using transform technique.
+===================================================== */
+.auth-nav {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =====================================================
+   AUTH BUTTON (LOGIN / LOGOUT SHARED STYLES)
+   -----------------------------------------------------
+   Unified CTA styling for both <a> and <button>.
+   Explicitly removes browser default button styles.
+===================================================== */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 34px;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  background-color: #ff7a18;
+  background-image: none !important;
+  color: #ffffff;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* Cross-browser removal of native button styles */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: all 0.35s ease;
+}
+
+/* Hover elevation + glow effect */
+.auth-btn:hover {
+  background-color: #ff8c32;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 122, 24, 0.45);
+}
+
+/* Logout intentionally reuses same CTA visuals */
+.logout-btn {
+  background-color: #ff7a18;
+}
+
+.logout-btn:hover {
+  background-color: #ff8c32;
+}
+
+/* =====================================================
+   PAGE TITLE SECTION
+   -----------------------------------------------------
+   Intro section describing the page purpose.
+   Center-aligned with constrained text width.
+===================================================== */
+.page-title {
+  text-align: center;
+  padding: 110px 8% 80px;
+}
+
+.page-title h2 {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.page-title p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 16.5px;
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   RESTAURANT GRID LAYOUT
+   -----------------------------------------------------
+   Fixed 3-column grid on desktop.
+   Large gaps emphasize premium card spacing.
+===================================================== */
+.grid {
+  padding: 0 5% 120px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+}
+
+/* =====================================================
+   CARD CONTAINER
+   -----------------------------------------------------
+   Clickable glassmorphism card with floating animation.
+   Initially hidden for reveal-on-scroll behavior.
+===================================================== */
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg);
+  border-radius: 32px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+
+  /* Reveal animation base state */
+  opacity: 0;
+  transform: translateY(40px);
+
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Activated when revealed via JS */
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover interaction: lift, scale, glow */
+.card:hover {
+  transform: translateY(-22px) scale(1.04);
+  box-shadow:
+    0 18px 40px rgba(255, 255, 255, 0.12),
+    0 0 25px rgba(245, 158, 11, 0.25);
+  animation-play-state: paused;
+}
+
+/* =====================================================
+   CARD IMAGE SECTION
+   -----------------------------------------------------
+   Fixed-height image with zoom-on-hover and
+   gradient overlay for text readability.
+===================================================== */
+.card-img {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.card:hover img {
+  transform: scale(1.15);
+}
+
+/* Dark gradient overlay on image bottom */
+.card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+/* =====================================================
+   CARD CONTENT
+   -----------------------------------------------------
+   Textual information about restaurant.
+   Clear visual hierarchy using size and color.
+===================================================== */
+.card-content {
+  padding: 36px;
+}
+
+.card-content h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.cuisine {
+  font-size: 16px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.address {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.description {
+  font-size: 16px;
+  color: #e5e7eb;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   CARD FOOTER
+   -----------------------------------------------------
+   Meta details like delivery time and rating.
+   Uses flex for horizontal alignment.
+===================================================== */
+.card-footer {
+  margin-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delivery {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.rating {
+  font-size: 14px;
+  color: #facc15;
+}
+
+/* =====================================================
+   FLOATING ANIMATION
+   -----------------------------------------------------
+   Subtle vertical motion for idle cards.
+===================================================== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE BREAKPOINTS
+   -----------------------------------------------------
+   Adjusts grid and typography for tablets and mobile.
+===================================================== */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title h2 {
+    font-size: 36px;
+  }
+}

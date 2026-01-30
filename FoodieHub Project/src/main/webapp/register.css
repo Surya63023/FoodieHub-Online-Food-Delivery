@@ -1,0 +1,299 @@
+/* =====================================================
+   ROOT VARIABLES
+   -----------------------------------------------------
+   Centralized theme tokens for accent colors, text,
+   dark card backgrounds, and glow effects.
+===================================================== */
+:root {
+  --accent: #ff7a18;
+  --accent-dark: #ff4d00;
+  --dark-card: rgba(18, 18, 18, 0.92);
+  --text-main: #ffffff;
+  --text-muted: #d6d6d6;
+  --glow: rgba(255, 122, 24, 0.6);
+}
+
+/* =====================================================
+   RESET & BASE TYPOGRAPHY
+   -----------------------------------------------------
+   Removes default browser spacing and applies a
+   consistent box model and font stack.
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* =====================================================
+   BODY LAYOUT (CENTERING FIX)
+   -----------------------------------------------------
+   Full viewport height with flex centering.
+   Ensures the auth card is perfectly centered
+   both horizontally and vertically.
+===================================================== */
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
+    no-repeat center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =====================================================
+   FLOATING ANIMATION
+   -----------------------------------------------------
+   Subtle vertical motion applied to the main card
+   to add life and depth to the UI.
+===================================================== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* =====================================================
+   MAIN AUTH CARD WRAPPER
+   -----------------------------------------------------
+   Two-column grid container holding the image
+   section and the form section.
+===================================================== */
+.auth-wrapper {
+  width: 1050px;
+  max-width: 95%;
+  background: var(--dark-card);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-radius: 26px;
+  overflow: hidden;
+
+  /* Floating idle animation */
+  animation: float 6s ease-in-out infinite;
+
+  /* Depth and glow */
+  box-shadow:
+    0 45px 100px rgba(0,0,0,0.75),
+    0 0 40px rgba(255,122,24,0.25);
+
+  transition: 0.5s ease;
+}
+
+/* Hover elevation and glow enhancement */
+.auth-wrapper:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 60px 130px rgba(0,0,0,0.85),
+    0 0 55px var(--glow);
+}
+
+/* =====================================================
+   LEFT IMAGE / BRANDING SECTION
+   -----------------------------------------------------
+   Visual branding panel with background image,
+   gradient overlay, and marketing text.
+===================================================== */
+.auth-image {
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.9)),
+    url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe")
+    no-repeat center / cover;
+  padding: 60px 52px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Brand headline */
+.auth-image h1 {
+  font-size: 46px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* Accent highlight in heading */
+.auth-image h1 span {
+  color: var(--accent);
+}
+
+/* Supporting tagline */
+.tagline {
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Description text */
+.desc {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Small stats or trust indicators */
+.stats {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* =====================================================
+   RIGHT FORM PANEL
+   -----------------------------------------------------
+   Contains authentication or registration form.
+===================================================== */
+.auth-form {
+  padding: 46px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Form heading */
+.auth-form h2 {
+  font-size: 28px;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+/* Subtext below heading */
+.auth-form small {
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* =====================================================
+   FORM FIELDS
+   -----------------------------------------------------
+   Input and textarea styling with focus glow.
+===================================================== */
+.field {
+  margin-bottom: 18px;
+}
+
+/* Field labels */
+.field label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+}
+
+/* Text inputs and textarea */
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #0e0e0e;
+  color: #ffffff;
+  font-size: 15px;
+  transition: 0.35s ease;
+}
+
+/* Textarea specific sizing */
+.field textarea {
+  resize: none;
+  min-height: 85px;
+}
+
+/* Placeholder styling */
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #777777;
+}
+
+/* Focus state with accent glow */
+.field input:focus,
+.field textarea:focus {
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 0 22px var(--glow);
+  background: #0b0b0b;
+}
+
+/* =====================================================
+   ERROR MESSAGE
+   -----------------------------------------------------
+   Validation feedback shown conditionally via JS.
+===================================================== */
+.error {
+  font-size: 13px;
+  color: #ffbcbc;
+  display: none;
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+/* =====================================================
+   REGISTER BUTTON
+   -----------------------------------------------------
+   Primary call-to-action for form submission.
+===================================================== */
+.btn-register {
+  width: 100%;
+  margin-top: 12px;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+/* Hover lift and glow */
+.btn-register:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px var(--glow);
+}
+
+/* =====================================================
+   LOGIN REDIRECT TEXT
+   -----------------------------------------------------
+   Secondary navigation for existing users.
+===================================================== */
+.login-text {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.login-text a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   RESPONSIVE BEHAVIOR
+   -----------------------------------------------------
+   Switches to single-column layout and hides
+   the image section on smaller screens.
+===================================================== */
+@media (max-width: 900px) {
+  .auth-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-image {
+    display: none;
+  }
+}

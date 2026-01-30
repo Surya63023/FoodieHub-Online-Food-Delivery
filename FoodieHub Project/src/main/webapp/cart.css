@@ -1,0 +1,445 @@
+/* =====================================================
+   ROOT VARIABLES
+   -----------------------------------------------------
+   Centralized theme tokens for accent colors, danger
+   states, text hierarchy, glass panels, and borders.
+===================================================== */
+:root {
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --danger: #f87171;
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --glass: rgba(18, 18, 18, 0.55);
+  --border: rgba(255, 255, 255, 0.14);
+}
+
+/* =====================================================
+   RESET & BASE TYPOGRAPHY
+   -----------------------------------------------------
+   Removes default browser spacing and applies a
+   consistent box model and font family.
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =====================================================
+   BODY BACKGROUND & BASE STYLES
+   -----------------------------------------------------
+   Full-height layout with dark overlay on a fixed
+   background image for strong contrast.
+===================================================== */
+body {
+  min-height: 100vh;
+  color: var(--text-main);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.92)),
+    url("https://i.pinimg.com/736x/a1/91/b4/a191b4e2a68afb3d393bbda317c8c7d6.jpg")
+    center / cover fixed;
+}
+
+/* =====================================================
+   HEADER
+   -----------------------------------------------------
+   Sticky header with glass blur and bottom border.
+===================================================== */
+header {
+  position: sticky;
+  top: 0;
+  padding: 22px 8%;
+  backdrop-filter: blur(14px);
+  background: rgba(10, 10, 10, 0.65);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Header title / brand */
+header h1 {
+  font-size: 28px;
+  color: var(--accent);
+}
+
+/* =====================================================
+   PAGE TITLE SECTION
+   -----------------------------------------------------
+   Intro section explaining the cart page.
+===================================================== */
+.page-title {
+  text-align: center;
+  padding: 70px 8% 50px;
+}
+
+.page-title h2 {
+  font-size: 44px;
+  margin-bottom: 10px;
+}
+
+.page-title p {
+  max-width: 620px;
+  margin: auto;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   AUTH NAV (LOGIN / LOGOUT)
+   -----------------------------------------------------
+   Positioned absolutely within the header and
+   vertically centered using transform.
+===================================================== */
+.auth-nav {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =====================================================
+   AUTH BUTTON (LOGIN / LOGOUT)
+   -----------------------------------------------------
+   Unified CTA styling for both anchor and button.
+   Native browser button UI is fully reset.
+===================================================== */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 34px;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  background-color: #ff7a18;
+  background-image: none !important;
+  color: #ffffff;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: all 0.35s ease;
+}
+
+/* Hover lift and glow */
+.auth-btn:hover {
+  background-color: #ff8c32;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 122, 24, 0.45);
+}
+
+/* Logout intentionally uses same CTA style */
+.logout-btn {
+  background-color: #ff7a18;
+}
+
+.logout-btn:hover {
+  background-color: #ff8c32;
+}
+
+/* =====================================================
+   CART LAYOUT
+   -----------------------------------------------------
+   Two-column grid:
+   - Left: cart items
+   - Right: order summary
+===================================================== */
+.cart {
+  padding: 0 8% 130px;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 48px;
+}
+
+/* =====================================================
+   FLOATING ANIMATION
+   -----------------------------------------------------
+   Subtle vertical idle motion used across cards.
+===================================================== */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* =====================================================
+   CART ITEM CARD
+   -----------------------------------------------------
+   Glassmorphism container for each cart item with
+   hover elevation and glow.
+===================================================== */
+.cart-item {
+  display: flex;
+  gap: 22px;
+  background: var(--glass);
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  padding: 24px;
+  margin-bottom: 32px;
+
+  animation: float 6s ease-in-out infinite;
+  transition: 0.4s;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(245, 158, 11, 0.35);
+}
+
+/* Hover lift and stronger glow */
+.cart-item:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.95),
+    0 0 55px rgba(245, 158, 11, 0.6);
+}
+
+/* =====================================================
+   ITEM IMAGE
+   -----------------------------------------------------
+   Fixed-size thumbnail for cart items.
+===================================================== */
+.item-img {
+  width: 150px;
+  height: 130px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================================
+   ITEM INFO
+   -----------------------------------------------------
+   Item name and price details.
+===================================================== */
+.item-info {
+  flex: 1;
+}
+
+.item-info h3 {
+  font-size: 22px;
+}
+
+/* Price highlight */
+.price {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* =====================================================
+   QUANTITY CONTROLS
+   -----------------------------------------------------
+   Increase / decrease item quantity with buttons.
+===================================================== */
+.qty {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.qty-controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+/* Active quantity button */
+.qty-controls button:hover:not(:disabled) {
+  background: var(--accent);
+  color: #020617;
+  transform: scale(1.15);
+}
+
+/* Disabled state */
+.qty-controls button:disabled {
+  opacity: 0.4;
+}
+
+/* =====================================================
+   REMOVE ITEM BUTTON
+   -----------------------------------------------------
+   Destructive action styled with danger color.
+===================================================== */
+.remove-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 26px;
+  background: transparent;
+  border: 2px solid rgba(248, 113, 113, 0.7);
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover confirmation effect */
+.remove-btn:hover {
+  background: var(--danger);
+  color: #020617;
+  box-shadow: 0 0 30px rgba(248, 113, 113, 0.7);
+}
+
+/* =====================================================
+   SUMMARY PANEL
+   -----------------------------------------------------
+   Sticky order summary showing totals and checkout CTA.
+===================================================== */
+.summary {
+  position: sticky;
+  top: 130px;
+  height: 520px;
+  background: var(--glass);
+  border-radius: 32px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+
+  animation: float 7s ease-in-out infinite;
+  transition: 0.45s;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.95),
+    0 0 45px rgba(245, 158, 11, 0.45);
+}
+
+/* Hover lift for summary */
+.summary:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.98),
+    0 0 65px rgba(245, 158, 11, 0.7);
+}
+
+/* Summary rows */
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+}
+
+/* Total amount emphasis */
+.total {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   CHECKOUT BUTTON
+   -----------------------------------------------------
+   Primary CTA to proceed to order confirmation.
+===================================================== */
+.checkout {
+  margin-top: auto;
+  width: 100%;
+  padding: 16px;
+  border-radius: 34px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #020617;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.35s;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Hover scale and glow */
+.checkout:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 45px rgba(245, 158, 11, 0.8);
+}
+
+/* =====================================================
+   ADD MORE ITEMS SECTION
+   -----------------------------------------------------
+   Secondary CTA encouraging users to continue shopping.
+===================================================== */
+.add-more-items {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.add-more-items-btn {
+  width: 420px;
+  padding: 18px;
+  text-align: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.35s;
+}
+
+/* Hover fill effect */
+.add-more-items-btn:hover {
+  background: var(--accent);
+  color: #020617;
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.7);
+  transform: translateY(-5px);
+}
+
+/* =====================================================
+   EMPTY CART STATE
+   -----------------------------------------------------
+   Message shown when no items are present.
+===================================================== */
+.empty-cart {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* =====================================================
+   RESPONSIVE BEHAVIOR
+   -----------------------------------------------------
+   Switches to single-column layout on smaller screens
+   and disables sticky summary.
+===================================================== */
+@media (max-width: 900px) {
+  .cart {
+    grid-template-columns: 1fr;
+  }
+
+  .summary {
+    position: relative;
+    height: auto;
+  }
+
+  .add-more-items-btn {
+    width: 100%;
+  }
+}

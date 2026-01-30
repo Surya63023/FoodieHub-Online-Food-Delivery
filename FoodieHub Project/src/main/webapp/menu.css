@@ -1,0 +1,314 @@
+/* =====================================================
+   THEME VARIABLES
+   -----------------------------------------------------
+   Centralized design tokens controlling colors, glow
+   effects, glass backgrounds, and text hierarchy.
+===================================================== */
+:root {
+  --accent: #f59e0b;
+  --accent-soft: #fbbf24;
+  --glow-main: rgba(245,158,11,0.55);
+  --glow-alt: rgba(34,211,238,0.35);
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --glass: rgba(18,18,18,0.6);
+  --border: rgba(255,255,255,0.14);
+}
+
+/* =====================================================
+   GLOBAL RESET
+   -----------------------------------------------------
+   Normalizes spacing, box model, and typography
+   across all elements.
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =====================================================
+   BODY BACKGROUND & BASE STYLES
+   -----------------------------------------------------
+   Full-height layout with dark overlay on a fixed
+   background image for contrast and depth.
+===================================================== */
+body {
+  min-height: 100vh;
+  color: var(--text-main);
+  background:
+    linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.92)),
+    url("https://i.pinimg.com/736x/b7/17/eb/b717eb35f18bd5e580d2a48c54dd5aaf.jpg")
+    center / cover fixed;
+}
+
+/* =====================================================
+   HEADER
+   -----------------------------------------------------
+   Sticky top header with glass blur and border.
+   Remains visible during page scroll.
+===================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 22px 8%;
+  backdrop-filter: blur(18px);
+  background: rgba(10,10,10,0.65);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Header title / brand */
+header h1 {
+  color: var(--accent);
+  font-size: 28px;
+}
+
+/* =====================================================
+   AUTH NAV (LOGIN / LOGOUT)
+   -----------------------------------------------------
+   Positioned absolutely within header.
+   Same structure and styling reused across pages.
+===================================================== */
+.auth-nav {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =====================================================
+   AUTH BUTTON (LOGIN / LOGOUT)
+   -----------------------------------------------------
+   Unified CTA styling for both anchor and button.
+   Browser default button UI is fully removed.
+===================================================== */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 34px;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  background-color: #ff7a18;
+  background-image: none !important;
+  color: #ffffff;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* Reset native button appearance */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: all 0.35s ease;
+}
+
+/* Hover lift + glow */
+.auth-btn:hover {
+  background-color: #ff8c32;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 122, 24, 0.45);
+}
+
+/* Logout intentionally shares same CTA visuals */
+.logout-btn {
+  background-color: #ff7a18;
+}
+
+.logout-btn:hover {
+  background-color: #ff8c32;
+}
+
+/* =====================================================
+   PAGE TITLE SECTION
+   -----------------------------------------------------
+   Intro section describing the menu and restaurant.
+   Center-aligned with constrained text width.
+===================================================== */
+.page-title {
+  text-align: center;
+  padding: 90px 8% 70px;
+}
+
+.page-title h2 {
+  font-size: 46px;
+  margin-bottom: 12px;
+}
+
+.page-title .tagline {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.page-title .desc {
+  max-width: 720px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* =====================================================
+   MENU GRID LAYOUT
+   -----------------------------------------------------
+   Responsive grid displaying food items.
+   Uses three columns on desktop.
+===================================================== */
+.menu {
+  padding: 0 8% 140px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 42px;
+}
+
+/* =====================================================
+   MENU CARD CONTAINER
+   -----------------------------------------------------
+   Glassmorphism card with floating animation.
+   Initially hidden for reveal-on-scroll behavior.
+===================================================== */
+.menu-card {
+  position: relative;
+  background: var(--glass);
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 0.7s ease;
+
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Activated via JS when card enters viewport */
+.menu-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover: lift, scale, glow, pause floating animation */
+.menu-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-18px) scale(1.02);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.9),
+    0 0 55px var(--glow-main),
+    0 0 85px var(--glow-alt);
+}
+
+/* =====================================================
+   FOOD IMAGE
+   -----------------------------------------------------
+   Fixed-height image with zoom-on-hover
+   and dark gradient overlay for readability.
+===================================================== */
+.food-img {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.food-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.8s ease;
+}
+
+.menu-card:hover img {
+  transform: scale(1.18);
+}
+
+/* Bottom fade overlay */
+.food-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+}
+
+/* =====================================================
+   MENU CONTENT
+   -----------------------------------------------------
+   Textual information for each food item.
+===================================================== */
+.menu-content {
+  padding: 24px 24px 82px;
+}
+
+.menu-content h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.menu-content p {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.price {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* =====================================================
+   ADD TO CART BUTTON
+   -----------------------------------------------------
+   Positioned absolutely inside card.
+   Uses gradient background and scale-on-hover.
+===================================================== */
+.add-btn {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  padding: 13px 30px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #020617;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: scale(1.1);
+}
+
+/* =====================================================
+   FLOATING ANIMATION
+   -----------------------------------------------------
+   Subtle vertical movement for idle menu cards.
+===================================================== */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* =====================================================
+   RESPONSIVE BREAKPOINTS
+   -----------------------------------------------------
+   Adjusts grid and typography for tablets and mobile.
+===================================================== */
+@media (max-width: 1024px) {
+  .menu { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .menu { grid-template-columns: 1fr; }
+  .page-title h2 { font-size: 34px; }
+}

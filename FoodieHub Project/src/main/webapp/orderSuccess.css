@@ -1,0 +1,231 @@
+/* =====================================================
+   RESET & BASE TYPOGRAPHY
+   -----------------------------------------------------
+   Removes default browser margins/padding and ensures
+   consistent box sizing and font usage across elements.
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* =====================================================
+   BODY LAYOUT & BACKGROUND
+   -----------------------------------------------------
+   Full viewport height layout with centered content.
+   Uses a dark gradient overlay on a background image
+   to maintain text readability.
+===================================================== */
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
+    center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   PAGE WRAPPER
+   -----------------------------------------------------
+   Acts as a flex wrapper to horizontally and vertically
+   center the success card within the viewport.
+===================================================== */
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =====================================================
+   SUCCESS CARD
+   -----------------------------------------------------
+   Primary container for order confirmation details.
+   Uses a diagonal gradient background, rounded corners,
+   and layered shadows for a premium look.
+===================================================== */
+.success-card {
+  width: 600px;
+  max-width: 92%;
+  background: linear-gradient(135deg, #0b3c5d, #072f46);
+  border-radius: 32px;
+  padding: 50px 45px;
+  text-align: center;
+  color: #ffffff;
+
+  /* Deep shadow stack for depth */
+  box-shadow:
+    0 45px 100px rgba(0,0,0,0.85),
+    0 0 0 2px rgba(255,255,255,0.08);
+
+  animation: fadeUp 0.9s ease;
+}
+
+/* =====================================================
+   SUCCESS IMAGE / ICON
+   -----------------------------------------------------
+   Circular visual indicator for order success.
+   Includes gradient border, glow, and scale-in animation.
+===================================================== */
+.success-image {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  padding: 6px;
+  box-shadow: 0 0 40px rgba(255,152,0,0.75);
+  animation: pop 0.8s ease;
+}
+
+.success-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* =====================================================
+   TEXT CONTENT
+   -----------------------------------------------------
+   Confirmation heading and supporting order text.
+===================================================== */
+.success-card h2 {
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.success-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  opacity: 0.96;
+}
+
+/* Highlighted inline text */
+.success-card p strong {
+  color: #ffb74d;
+}
+
+/* =====================================================
+   ACTION BUTTONS CONTAINER
+   -----------------------------------------------------
+   Holds primary and secondary navigation buttons.
+===================================================== */
+.action-buttons {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* =====================================================
+   BASE BUTTON STYLE
+   -----------------------------------------------------
+   Resets anchor defaults and applies consistent
+   button sizing, typography, and transitions.
+===================================================== */
+.action-buttons a.btn {
+  all: unset;
+  min-width: 165px;
+  padding: 15px 28px;
+  border-radius: 36px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/* =====================================================
+   PRIMARY BUTTON: ORDER MORE
+   -----------------------------------------------------
+   Gradient CTA encouraging users to place another order.
+===================================================== */
+.action-buttons a.order-more {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  color: #072f46;
+  box-shadow: 0 14px 32px rgba(255,152,0,0.55);
+}
+
+.action-buttons a.order-more:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(255,152,0,0.85);
+}
+
+/* =====================================================
+   SECONDARY BUTTON: GO HOME
+   -----------------------------------------------------
+   Outlined button with color inversion on hover.
+===================================================== */
+.action-buttons a.go-home {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.action-buttons a.go-home:hover {
+  background: #ffffff;
+  color: #072f46;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   ANIMATIONS
+   -----------------------------------------------------
+   fadeUp → card entrance with lift + scale
+   pop    → success icon pop-in effect
+===================================================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE
+   -----------------------------------------------------
+   Reduces padding, image size, and stacks buttons
+   vertically on smaller screens.
+===================================================== */
+@media (max-width: 600px) {
+  .success-card {
+    padding: 40px 26px;
+  }
+
+  .success-image {
+    width: 115px;
+    height: 115px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
