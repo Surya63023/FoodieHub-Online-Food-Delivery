@@ -1,0 +1,178 @@
+## 🗄️ Database Structure – FoodieHub Online Food Delivery Application
+
+FoodieHub uses a **MySQL relational database** designed to support a complete end-to-end online food ordering workflow.  
+The database follows **normalization principles**, clear table relationships, and a clean separation between transactional and reference data, making it suitable for real-world Java web applications.
+
+---
+
+## 📌 Database Name
+
+online_food_delivery
+
+---
+
+## 📋 Tables Description
+
+### 1. user  
+Stores user account information for both customers and admins, including authentication and role management.
+
+Columns:
+- userId (INT, PRIMARY KEY)
+- userName (VARCHAR)
+- email (VARCHAR, UNIQUE)
+- phoneNumber (VARCHAR, UNIQUE)
+- password (VARCHAR)
+- address (VARCHAR)
+- role (VARCHAR)
+- createdDate (DATETIME)
+- lastLoginDate (DATETIME)
+
+Purpose:
+- Manages authentication and authorization
+- Supports role-based access (User / Admin)
+
+---
+
+### 2. restaurant  
+Stores restaurant information available on the platform.
+
+Columns:
+- restaurantId (INT, PRIMARY KEY)
+- restaurantName (VARCHAR)
+- address (VARCHAR)
+- rating (DECIMAL)
+- cuisine (VARCHAR)
+- deliveryTime (VARCHAR)
+- isActive (TINYINT)
+- imageURL (VARCHAR)
+- adminUserId (INT, FOREIGN KEY)
+- description (VARCHAR)
+
+Purpose:
+- Represents restaurants listed in the application
+- Linked to admin users for management
+
+---
+
+### 3. menu  
+Stores food items offered by each restaurant.
+
+Columns:
+- menuId (INT, PRIMARY KEY)
+- menuName (VARCHAR)
+- price (DECIMAL)
+- isAvailable (TINYINT)
+- description (TEXT)
+- imageURL (VARCHAR)
+- restaurantId (INT, FOREIGN KEY)
+
+Purpose:
+- Maintains restaurant-wise food menus
+- Supports availability and pricing control
+
+---
+
+### 4. orders  
+Stores order-level details placed by users.
+
+Columns:
+- orderId (INT, PRIMARY KEY)
+- orderDate (DATETIME)
+- restaurantId (INT, FOREIGN KEY)
+- userId (INT, FOREIGN KEY)
+- totalAmount (DECIMAL)
+- paymentMethod (VARCHAR)
+- status (VARCHAR)
+- address (VARCHAR)
+
+Purpose:
+- Represents a complete order transaction
+- Tracks order status and payment method
+
+---
+
+### 5. orderitem  
+Stores individual food items associated with each order.
+
+Columns:
+- orderItemId (INT, PRIMARY KEY)
+- orderId (INT, FOREIGN KEY)
+- itemName (VARCHAR)
+- menuId (INT, FOREIGN KEY)
+- quantity (INT)
+- totalPrice (DECIMAL)
+
+Purpose:
+- Maintains order line items
+- Supports one-to-many relationship between orders and menu items
+
+---
+
+## 📊 Database View
+
+### 6. v_order_billing (VIEW)
+
+A consolidated billing and order summary view created by joining orders, order items, users, and restaurants.
+
+Columns:
+- orderId
+- userId
+- restaurantId
+- finalBillAmount
+- itemTotal
+- billingStatus
+- paymentMethod
+- status
+- orderDate
+
+Purpose:
+- Simplifies billing and reporting
+- Used for order summary and admin reporting
+
+---
+
+## 🔗 Table Relationships
+
+- restaurant.adminUserId → user.userId  
+- menu.restaurantId → restaurant.restaurantId  
+- orders.userId → user.userId  
+- orders.restaurantId → restaurant.restaurantId  
+- orderitem.orderId → orders.orderId  
+- orderitem.menuId → menu.menuId  
+- v_order_billing.orderId → orders.orderId  
+
+These relationships ensure:
+- Data integrity
+- Consistent order lifecycle management
+- Scalable design for future enhancements
+
+---
+
+## 📁 SQL Script Organization (GitHub)
+
+All database scripts are structured in a clear execution order:
+
+database  
+├── 01_schema.sql        → Database creation  
+├── 02_tables.sql        → Table definitions  
+├── 03_constraints.sql  → Primary & foreign keys  
+├── 04_views.sql        → Database views  
+├── 05_sample_data.sql  → Sample/demo data  
+
+---
+
+## 🔐 Data Safety & GitHub Usage
+
+- Sample data uses dummy emails, phone numbers, and passwords
+- No real user credentials are stored
+- Safe to upload for GitHub portfolio and demo purposes
+
+---
+
+## 🎯 Why This Database Design
+
+- Mirrors real-world online food delivery platforms
+- Clean separation of users, restaurants, menus, and orders
+- Supports transactional consistency
+- Easy to explain in interviews and system design discussions
+- Ready for future upgrades (Spring Boot, JPA, REST APIs)
