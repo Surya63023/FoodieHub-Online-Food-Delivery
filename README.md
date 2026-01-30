@@ -228,28 +228,28 @@ assets/screenshots
 Screenshot usage examples:
 
 Login Page:
-![FoodieHub Login Page](assets/screenshots/login-page/foodiehub-login-page.png)
+![FoodieHub Login Page](assets/screenshots/foodiehub-login-page.png.png)
 
 Register Page:
-![FoodieHub Register Page](assets/screenshots/register-page/foodiehub-register-page.png)
+![FoodieHub Register Page](assets/screenshots/foodiehub-register-page.png.png)
 
 Home Page:
-![FoodieHub Home Page](assets/screenshots/home-page/foodiehub-home-page.png)
+![FoodieHub Home Page](assets/screenshots/foodiehub-home-page.png.png)
 
 Restaurant Listing Page:
-![FoodieHub Restaurant Page](assets/screenshots/restaurant-page/foodiehub-restaurant-listing-page.png)
+![FoodieHub Restaurant Page](assets/screenshots/foodiehub-restaurant-listing-page.png.png)
 
 Menu Page:
-![FoodieHub Menu Page](assets/screenshots/menu-page/foodiehub-menu-page.png)
+![FoodieHub Menu Page](assets/screenshots/foodiehub-menu-page.png.png)
 
 Cart Page:
-![FoodieHub Cart Page](assets/screenshots/cart-page/foodiehub-cart-page.png)
+![FoodieHub Cart Page](assets/screenshots/foodiehub-cart-page.png.png)
 
 Order Confirmation Page:
-![FoodieHub Order Confirmation](assets/screenshots/order-confirm-page/foodiehub-order-confirmation-page.png)
+![FoodieHub Order Confirmation](assets/screenshots/foodiehub-order-confirmation-page.png.png)
 
 Order Success Page:
-![FoodieHub Order Success](assets/screenshots/order-success-page/foodiehub-order-success-page.png)
+![FoodieHub Order Success](assets/screenshots/foodiehub-order-success-page.png.png)
 
 
 ---
